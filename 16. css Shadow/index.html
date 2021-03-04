@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="hero">
+
+    <h1>hero</h1>
+    </div>
+  </body>
+  <style media="screen">
+    h1{
+      text-shadow: 10px 10px 0 rgba(0,0,0,1);
+      font-size: 100px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 200px;
+    }
+
+  </style>
+  <script type="text/javascript">
+    const hero = document.querySelector('.hero');
+    const text = hero.querySelector('h1');
+    const walk = 15;
+    function shadow(e){
+      const width = hero.offsetWidth;
+      const height = hero.offsetHeight;
+      let { offsetX:x, offsetY: y } = e;
+
+      console.log(x,y);
+      if(this !== e.target){
+        x += e.target.offsetLeft;
+        y += e.target.offsetTop;
+      }
+
+      const xWalk = Math.round((x / width * walk) - (walk/2));
+      const yWalk = Math.round((y / width * walk) - (walk/2));
+
+      text.style.textShadow = `
+      ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7)
+
+      `;
+    }
+
+    hero.addEventListener('mousemove', shadow);
+  </script>
+</html>
