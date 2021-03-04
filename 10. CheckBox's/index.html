@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="items">
+      <div class="item">
+        <input type="checkbox">
+        <p>This is item 1</p>
+      </div>
+      <div class="item">
+        <input type="checkbox">
+        <p>This is item 2</p>
+      </div>
+      <div class="item">
+        <input type="checkbox">
+        <p>This is item 3</p>
+      </div>
+      <div class="item">
+        <input type="checkbox">
+        <p>This is item 4</p>
+      </div>
+      <div class="item">
+        <input type="checkbox">
+        <p>This is item 5</p>
+      </div>
+      <div class="item">
+        <input type="checkbox">
+        <p>This is item 6</p>
+      </div>
+
+    </div>
+
+  </body>
+  <script type="text/javascript">
+
+    const checkboxes = document.querySelectorAll('.items input[type="checkbox"]');
+
+    let lastChecked;
+
+    function handleCheck(e){
+      console.log(e);
+      let inBetween = false;
+      if(e.shiftKey && this.checked){
+        checkboxes.forEach(checkbox => {
+
+          if (checkbox === this || checkbox === lastChecked ) {
+            inBetween = !inBetween;
+            console.log("Starting to check them inbetween!");
+          }
+
+          if(inBetween)
+          {
+            checkbox.checked = true;
+          }
+        });
+      }
+      lastChecked = this;
+    };
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
+  </script>
+</html>
